@@ -1,0 +1,39 @@
+---
+- name: Learning ansible variables 
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    servers:
+      - poweredge001
+      - poweredge002
+      - poweredge003
+      - poweredge004
+      - poweredge005
+    locations:
+      region: 
+        - northeast
+        - east
+        - north
+      datacenters:
+        - Hershey Pennsylvania
+        - Rochester New York
+        - Seattle Washington
+  tasks:
+    - name: gather information of first server name
+      debug:
+        var: servers[0]
+
+    - name: print all regions
+      debug:
+        var: locations.region   
+
+    - name: print all datacenters
+      debug:
+        var: locations.datacenters      
+      
+    - name: Print all datacenters and regions
+      debug:
+        var: "{{ locations.region + locations.datacenter }}"
+
