@@ -35,5 +35,6 @@
       
     - name: Print all datacenters and regions
       debug:
-        var: "{{ locations.region + locations.datacenter }}"
+        var: item
+      loop: "{{ locations.region + locations.datacenters }}"
 
